@@ -9,7 +9,7 @@ class Not < Element
         
         Thread.fork{
             loop do
-                sleep(0.5)
+                sleep(0.1)
                 #puts "Not Output port: #{ @output[0].state }"
                 calculate(*args)
             end     

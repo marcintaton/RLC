@@ -9,7 +9,7 @@ class Nor < Element
 
         Thread.fork {
                 loop do
-                sleep(0.5)
+                sleep(0.1)
                 #puts "Nor output port: #{ @output[0].state } "
                 calculate(*args)
             end       

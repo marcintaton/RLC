@@ -8,8 +8,8 @@ class And < Element
         @output << State.new << State.new
 
         Thread.fork {
-                loop do
-                sleep(0.5)
+            loop do
+                sleep(0.1)
                 #puts "And output port: #{ @output[0].state } "
                 calculate(*args)
             end       

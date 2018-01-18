@@ -1,18 +1,19 @@
-class Source < Element
+class Switch < Element
 
     attr_writer :input
-    attr_reader :output
+    attr_reader :output, :name
 
-    def initialize (_in)
+    def initialize (name, _in)
 
+        @name = name
         @input = _in
         @output = Array.new()
         @output << State.new << State.new
         
         Thread.fork{
             loop do
-                sleep(0.5)
-                #puts "Source Output port: #{ @output[0].state }"
+                sleep(0.1)
+                #puts "Switch Output port: #{ @output[0].state }"
                 calculate()
             end     
         }
