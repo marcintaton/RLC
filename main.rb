@@ -11,7 +11,10 @@ require './Elements/Nor.rb'
 require './Elements/Xor.rb'
 require './Elements/Xnor.rb'
 require './Elements/Not.rb'
+require './Elements/Flipflop.rb'
+require './Elements/D_flipflop.rb'
 require './Elements/Lamp.rb'
+
 
 #Controlers
 require './Controlers/View_controler.rb'
@@ -24,24 +27,26 @@ require './Controlers/View_controler.rb'
 ###################################
 
 # Add all switches
-src_1 = Switch.new("x0", 0)
-src_2 = Switch.new("x1", 1)
-src_3 = Switch.new("x2", 1)
-src_4 = Switch.new("x3", 1)
+clock = Switch.new("c", 0)
+dinput = Switch.new("d", 1)
+
 
 # Put all switches into switch array
 Switch_array = Array.new()
-Switch_array << src_1 << src_2 << src_3 << src_4
-
+Switch_array << clock << dinput
 # Declare and connect all circut components
-and_1 = And.new(src_2.output[0], src_3.output[0], src_1.output[0], src_4.output[0])
+
+
+d_ff = D_flipflop.new("level", clock, dinput)
 
 # Connect lamps to the circuit
-lamp_1 = Lamp.new("And_1", and_1.output[0])
+lamp_1 = Lamp.new("Q", d_ff.output[0])
+lamp_2 = Lamp.new("!Q", d_ff.output[1])
+
 
 # Put all lamps into lamp array
 Lamp_array = Array.new()
-Lamp_array << lamp_1
+Lamp_array << lamp_1 << lamp_2 
 
 # Create view controler component
 v_c = View_controler.new(Switch_array, Lamp_array)

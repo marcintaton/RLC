@@ -8,11 +8,11 @@ class Nand < Element
         @output << State.new << State.new
 
         Thread.fork {
-                loop do
+            loop do
                 sleep(0.1)
                 #puts "Nand output port: #{ @output[0].state } "
                 calculate(*args)
-            end       
+            end        
         }
     end
 
